@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 // import ProfileBox from './Component/pokeProfile';
 import PageLayout from './Component/PageLayout';
 

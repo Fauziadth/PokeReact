@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../App.css';
 import ProfileBox from './PokeProfile'
 
 export default class PageLayout extends Component {
@@ -16,19 +15,6 @@ export default class PageLayout extends Component {
     }
 
     componentDidMount() {
-        // for (let i = 1; i<=1; i++){
-
-        //     this.setState(prevState => {
-        //         let tempContent = [...prevState.pokeContent]
-        //         tempContent.push(<ProfileBox key = {prevState.id} id={prevState.id}/>)
-        //         // console.log('WAAAW', tempContent)
-        //         return {
-        //             id : prevState.id+1,
-        //             pokeContent : tempContent
-        //         }}
-        //     )
-
-        // }
         this.updatePagination()
     }
 
@@ -44,27 +30,13 @@ export default class PageLayout extends Component {
         let tempContent = [];
         for (let i = 1; i<=this.state.contentNumber; i++){
             tempContent.push(<ProfileBox key = {i} id={i}/>);
-
-            // this.setState(() => {
-            //     // let tempContent = [...prevState.pokeContent]
-            //     // tempContent.push(<ProfileBox key = {prevState.id} id={prevState.id}/>)
-            //     tempContent.push(<ProfileBox key = {i} id={i}/>)
-            //     // console.log('WAAAW', tempContent)
-            //     // return {
-            //     //     id : prevState.id+1,
-            //     //     pokeContent : tempContent
-            //     // }
-            // }
-            // )  
         }
-        console.log('ASDAS', tempContent)
         this.setState({
             pokeContent : tempContent
         })
     }
 
     handleIdChange (event) {
-        // console.log('event', event)
         const contentNumber = parseInt(event.target.value, 10);
         if (!isNaN(contentNumber) && contentNumber > 0) {
             this.setState({ contentNumber });
@@ -77,18 +49,9 @@ export default class PageLayout extends Component {
             <div>
                 <header>
                     <h1 className = 'blue block'>Pokemon Library Try</h1>
-                    {/* <nav className = 'block blue right'>Content</nav> */}
-                    {/* <input
-                        className = "counterID block right"
-                        type="number"
-                        step={1}
-                        min={0}
-                        value={this.state.contentNumber}
-                        onChange={this.handleIdChange}
-                    /> */}
                     <select 
                         name="pageSize" 
-                        className = "counterID block right"
+                        className = "counterID block pagi"
                         onChange = {this.handleIdChange} 
                     >
                         <option value="1">1</option>
@@ -97,7 +60,10 @@ export default class PageLayout extends Component {
                         <option value="25">25</option>
                     </select> 
                 </header>
-                <div className= 'container'>{this.state.pokeContent}</div>
+                <div className= 'container'>
+                    <div className="half">{this.state.pokeContent}
+                    </div>
+                </div>
             </div>
         )
     }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../App.css';
 
 
 // console.log('AAAAAA')
@@ -53,11 +52,10 @@ class ProfileBox extends Component {
     const { pokeID, pokemon } = this.state;
     return (
       <div className = "profileBox">
-        {/* <img src={logo} className="App-logo" alt="logo"/> */}
         {pokemon && 
         <div>
           <div className='fit'>
-            <h3 className='block blue'>{this.capitalizeFirst(pokemon.name)}</h3> <h4 className='blue block right'>{pokeID}</h4>
+            <h3 className='block blue'>{this.capitalizeFirst(pokemon.name)}</h3> <h4 className='blue id'>{pokeID}</h4>
           </div>
           <img src={pokemon.sprites.front_default} className="poke-sprite" alt=""/>
           <p></p>
