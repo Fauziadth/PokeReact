@@ -48,16 +48,16 @@ export default class PageLayout extends Component {
         return (
             <div>
                 <header>
-                    <h1 className = 'blue block'>Pokemon Library Try</h1>
+                    <h1 className = 'blue block'>Pokemon Library</h1>
                     <select 
                         name="pageSize" 
                         className = "counterID block pagi"
                         onChange = {this.handleIdChange} 
                     >
                         <option value="1">1</option>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
+                        <option value="6">6</option>
+                        <option value="15">15</option>
+                        {/* <option value="25">25</option> */}
                     </select> 
                 </header>
                 <div className= 'container'>

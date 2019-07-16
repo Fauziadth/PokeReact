@@ -1,17 +1,12 @@
+body {
+  background-color: #094663;
+}
+
 .App {
   min-height: 100vh;
   margin: 0;
   padding: 0;
   text-align: center;
-}
-
-body {
-  background-color: #094663;
-}
-
-.fit {
-  width: 100%;
-  position: relative;
 }
 
 .block {
@@ -23,14 +18,13 @@ body {
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center; 
-  // justify-content: center;
 }
+
 .half{
   width: 65%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  
+  justify-content: center;  
 }
 
 .blue {
@@ -42,10 +36,11 @@ body {
   position: absolute;
   font-size: 1.2em;
   padding: .5em;
-  right: 0px;
+  right: calc(50% - 0.8em);
   top : 0px;
   margin: 0;
 }
+
 .pagi{
   position: absolute;
   top : 1.5em; right : 2em;
@@ -68,8 +63,31 @@ code {
   height : 275px;
   width : 250px;
   text-align: center;
+  position: relative;
+  box-shadow: 0 0 0.5em 0.2em #2c69af;
+  cursor: pointer;
+  transition: all 0.1s;
+
+  &:hover{
+    transform: scale(1.05);
+
+    .poke-sprite{
+      // animation: spriteGrow infinite .5s;
+    }
+  }
 }
 
 .counterID {
   margin : 10px 20px 10px 0
 }
+
+.poke-sprite{
+  width: 70%;
+}
+
+// @keyframes spriteGrow {
+//   0%   {transform: scale(1)}
+//   25%  {transform: scale(1.2)}
+//   75%  {transform: scale(0.5)}
+//   100%   {transform: scale(.9)}
+// }

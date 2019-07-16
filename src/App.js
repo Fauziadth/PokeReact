@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.scss';
-// import ProfileBox from './Component/pokeProfile';
 import PageLayout from './Component/PageLayout';
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import ProfilePage from './Component/PokePage';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <PageLayout/>
-        {/* <ProfileBox/> */}
+        <Router>
+            <Route path="/" exact component={PageLayout} />
+            <Route path="/poke/:id" component={ProfilePage} />
+        </Router>
+
       </div>
     );
   }
