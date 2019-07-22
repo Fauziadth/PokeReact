@@ -9,8 +9,8 @@ body {
   text-align: center;
 }
 
-.block {
-  display: inline-block;
+.link {
+  text-decoration: none;
 }
 
 .container{
@@ -60,7 +60,7 @@ code {
   margin : 20px;
   background-color : #6faef5;
   border-radius: 10px;
-  height : 275px;
+  height : 250px;
   width : 250px;
   text-align: center;
   position: relative;
@@ -82,7 +82,7 @@ code {
 }
 
 .poke-sprite{
-  width: 70%;
+  width: 60%;
 }
 
 // @keyframes spriteGrow {

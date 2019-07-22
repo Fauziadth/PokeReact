@@ -41,9 +41,9 @@ class ProfileBox extends Component {
     return (
       <div className = "profileBox">
         {pokemon && 
-        <Link to={'/poke/'+pokeID }>
+        <Link to={'/poke/'+pokeID } className='link'>
           <div>
-              <h3 className='block blue'>{this.capitalizeFirst(pokemon.name)}</h3> <h4 className='blue id'>{pokeID}</h4>
+              <h3 className='blue'>{this.capitalizeFirst(pokemon.name)}</h3> <h4 className='blue id'>{pokeID}</h4>
             <img src={pokemon.sprites.front_default} className="poke-sprite" alt=""/>
             <p></p>
           </div>

@@ -5,39 +5,47 @@ export default class PageLayout extends Component {
 
     constructor(props){
         super(props)
+        this.handleIdChange = this.handleIdChange.bind(this);
+        this.updatePagination = this.updatePagination.bind(this);
+        console.log('Bawaan', props)
         this.state = {
             id : 1,
             pokeContent : [],
-            contentNumber : 1
+            contentNumber : this.props.id
         }
-        this.handleIdChange = this.handleIdChange.bind(this);
-        this.updatePagination = this.updatePagination.bind(this);
     }
 
     componentDidMount() {
-        this.updatePagination()
+        let pokeContent = this.updatePagination(this.state.contentNumber)
+        this.setState({
+            pokeContent
+        })
     }
 
     componentDidUpdate(prevProps, prevState){
-        console.log('NOW', this.state.contentNumber, 'PREV', prevState.contentNumber)
-        if (this.state.contentNumber !== prevState.contentNumber){
-            this.updatePagination();
+        
+        if (this.props.id !== prevProps.id){
+            let pokeContent = this.updatePagination(this.props.id)
+            this.setState({
+                contentNumber : this.props.id,
+                pokeContent : pokeContent
+            })
         }
     }
 
-    updatePagination () {
-
+    updatePagination = function(n) {
         let tempContent = [];
-        for (let i = 1; i<=this.state.contentNumber; i++){
+        for (let i = 1; i<=n; i++){
             tempContent.push(<ProfileBox key = {i} id={i}/>);
         }
-        this.setState({
-            pokeContent : tempContent
-        })
+        
+        return tempContent
+        
     }
 
     handleIdChange (event) {
         const contentNumber = parseInt(event.target.value, 10);
+        this.temp = contentNumber;
         if (!isNaN(contentNumber) && contentNumber > 0) {
             this.setState({ contentNumber });
         }
@@ -52,7 +60,7 @@ export default class PageLayout extends Component {
                     <select 
                         name="pageSize" 
                         className = "counterID block pagi"
-                        onChange = {this.handleIdChange} 
+                        onChange = {this.props.change} 
                     >
                         <option value="1">1</option>
                         <option value="6">6</option>
