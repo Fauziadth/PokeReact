@@ -1,18 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
-
-
-// console.log('AAAAAA')
-// let pokeJson;
-// fetch('https://pokeapi.co/api/v2/pokemon/')
-//   .then(function(response) {
-//     return response.json();
-//   })
-//   .then(function(myJson) {
-//     console.log(myJson);
-//   });
-
-// console.log('wat', pokeJson)
+import { Link } from "react-router-dom";
 
 class ProfileBox extends Component {
   constructor(props){
@@ -53,15 +40,14 @@ class ProfileBox extends Component {
     const { pokeID, pokemon } = this.state;
     return (
       <div className = "profileBox">
-        {/* <img src={logo} className="App-logo" alt="logo"/> */}
         {pokemon && 
-        <div>
-          <div className='fit'>
-            <h3 className='block blue'>{this.capitalizeFirst(pokemon.name)}</h3> <h4 className='blue block right'>{pokeID}</h4>
+        <Link to={'/poke/'+pokeID } className='link'>
+          <div>
+              <h3 className='blue'>{this.capitalizeFirst(pokemon.name)}</h3> <h4 className='blue id'>{pokeID}</h4>
+            <img src={pokemon.sprites.front_default} className="poke-sprite" alt=""/>
+            <p></p>
           </div>
-          <img src={pokemon.sprites.front_default} className="poke-sprite" alt=""/>
-          <p></p>
-        </div>}
+        </Link>}
       </div>
     )
   }

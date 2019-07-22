@@ -1,71 +1,51 @@
 import React, { Component } from 'react';
-import '../App.css';
 import ProfileBox from './PokeProfile'
 
 export default class PageLayout extends Component {
 
     constructor(props){
         super(props)
+        this.handleIdChange = this.handleIdChange.bind(this);
+        this.updatePagination = this.updatePagination.bind(this);
+        console.log('Bawaan', props)
         this.state = {
             id : 1,
             pokeContent : [],
-            contentNumber : 1
+            contentNumber : this.props.id
         }
-        this.handleIdChange = this.handleIdChange.bind(this);
-        this.updatePagination = this.updatePagination.bind(this);
     }
 
     componentDidMount() {
-        // for (let i = 1; i<=1; i++){
-
-        //     this.setState(prevState => {
-        //         let tempContent = [...prevState.pokeContent]
-        //         tempContent.push(<ProfileBox key = {prevState.id} id={prevState.id}/>)
-        //         // console.log('WAAAW', tempContent)
-        //         return {
-        //             id : prevState.id+1,
-        //             pokeContent : tempContent
-        //         }}
-        //     )
-
-        // }
-        this.updatePagination()
-    }
-
-    componentDidUpdate(prevProps, prevState){
-        console.log('NOW', this.state.contentNumber, 'PREV', prevState.contentNumber)
-        if (this.state.contentNumber !== prevState.contentNumber){
-            this.updatePagination();
-        }
-    }
-
-    updatePagination () {
-
-        let tempContent = [];
-        for (let i = 1; i<=this.state.contentNumber; i++){
-            tempContent.push(<ProfileBox key = {i} id={i}/>);
-
-            // this.setState(() => {
-            //     // let tempContent = [...prevState.pokeContent]
-            //     // tempContent.push(<ProfileBox key = {prevState.id} id={prevState.id}/>)
-            //     tempContent.push(<ProfileBox key = {i} id={i}/>)
-            //     // console.log('WAAAW', tempContent)
-            //     // return {
-            //     //     id : prevState.id+1,
-            //     //     pokeContent : tempContent
-            //     // }
-            // }
-            // )  
-        }
-        console.log('ASDAS', tempContent)
+        let pokeContent = this.updatePagination(this.state.contentNumber)
         this.setState({
-            pokeContent : tempContent
+            pokeContent
         })
     }
 
+    componentDidUpdate(prevProps, prevState){
+        
+        if (this.props.id !== prevProps.id){
+            let pokeContent = this.updatePagination(this.props.id)
+            this.setState({
+                contentNumber : this.props.id,
+                pokeContent : pokeContent
+            })
+        }
+    }
+
+    updatePagination = function(n) {
+        let tempContent = [];
+        for (let i = 1; i<=n; i++){
+            tempContent.push(<ProfileBox key = {i} id={i}/>);
+        }
+        
+        return tempContent
+        
+    }
+
     handleIdChange (event) {
-        // console.log('event', event)
         const contentNumber = parseInt(event.target.value, 10);
+        this.temp = contentNumber;
         if (!isNaN(contentNumber) && contentNumber > 0) {
             this.setState({ contentNumber });
         }
@@ -76,28 +56,22 @@ export default class PageLayout extends Component {
         return (
             <div>
                 <header>
-                    <h1 className = 'blue block'>Pokemon Library Try</h1>
-                    {/* <nav className = 'block blue right'>Content</nav> */}
-                    {/* <input
-                        className = "counterID block right"
-                        type="number"
-                        step={1}
-                        min={0}
-                        value={this.state.contentNumber}
-                        onChange={this.handleIdChange}
-                    /> */}
+                    <h1 className = 'blue block'>Pokemon Library</h1>
                     <select 
                         name="pageSize" 
-                        className = "counterID block right"
-                        onChange = {this.handleIdChange} 
+                        className = "counterID block pagi"
+                        onChange = {this.props.change} 
                     >
                         <option value="1">1</option>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
+                        <option value="6">6</option>
+                        <option value="15">15</option>
+                        {/* <option value="25">25</option> */}
                     </select> 
                 </header>
-                <div className= 'container'>{this.state.pokeContent}</div>
+                <div className= 'container'>
+                    <div className="half">{this.state.pokeContent}
+                    </div>
+                </div>
             </div>
         )
     }
