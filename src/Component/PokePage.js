@@ -5,27 +5,29 @@ class ProfilePage extends Component {
   constructor(props){
     super(props);
     let params = props.match.params;
-    this.pokeAPI = 'https://pokeapi.co/api/v2/pokemon/' + params.id
-    this.flavorAPI = 'https://pokeapi.co/api/v2/pokemon-species/' + params.id
-    console.log('COBA DULU PROPS', params)
+    this.pokeAPI = 'https://pokeapi.co/api/v2/pokemon/' + params.id;
+    this.flavorAPI = 'https://pokeapi.co/api/v2/pokemon-species/' + params.id;
+    console.log('COBA DULU PROPS', params);
     this.state = {
       poke : null,
       flavor : null
-    }
+    };
   }
 
   componentWillMount(){
     fetch(`${this.pokeAPI}`)
       .then(res => res.json())
       .then(poke => {
-        console.log('hasil fetch ' ,poke)
-        this.setState({poke})})
+        console.log('hasil fetch ' ,poke);
+        this.setState({poke});
+      });
 
     fetch(`${this.flavorAPI}`)
     .then(res => res.json())
     .then(flavor => {
-      console.log('hasil species ' ,flavor)
-      this.setState({flavor})});
+      console.log('hasil species ' ,flavor);
+      this.setState({flavor})
+    });
   }
 
   componentDidUpdate(){
@@ -37,7 +39,7 @@ class ProfilePage extends Component {
   // }
 
   render() {
-    let pokemon = this.state.poke
+    let pokemon = this.state.poke;
     return (
       pokemon?
       <div className = "profilePage">
@@ -48,7 +50,7 @@ class ProfilePage extends Component {
       <div className = "profilePage">
         <h1>{`Fetching data... Please Wait!`}</h1>
       </div>
-    )
+    );
   }
 }
 

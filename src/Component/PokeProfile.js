@@ -31,7 +31,7 @@ class ProfileBox extends Component {
 
   capitalizeFirst = (name) => {
     let capName = name[0].toUpperCase() + name.slice(1);
-    return capName
+    return capName;
   }
 
  
@@ -49,7 +49,7 @@ class ProfileBox extends Component {
           </div>
         </Link>}
       </div>
-    )
+    );
   }
 }
 

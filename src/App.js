@@ -15,8 +15,8 @@ class App extends Component {
 
   handleIdChange (event) {
     const contentNumber = parseInt(event.target.value, 10);
-    console.log('parent')
-    console.log('NOW', contentNumber, 'PREV', this.state.id)
+    console.log('parent');
+    console.log('NOW', contentNumber, 'PREV', this.state.id);
     this.temp = contentNumber;
     if (!isNaN(contentNumber) && contentNumber > 0) {
         this.setState({ id : contentNumber });
@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router>
+        <Router basename="/PokeReact">
             {/* <Route path="/" exact component={PageLayout} change={this.handleIdChange} id={this.state.id}/> */}
             <Route path="/" exact render={(props) => (
               <PageLayout {...props} change={this.handleIdChange} id = {this.state.id}/>
