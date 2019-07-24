@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
-import ProfileBox from './PokeProfile'
+import ProfileBox from './PokeProfile';
 
 export default class PageLayout extends Component {
 
     constructor(props){
-        super(props)
+        super(props);
         this.handleIdChange = this.handleIdChange.bind(this);
         this.updatePagination = this.updatePagination.bind(this);
-        console.log('Bawaan', props)
+        console.log('Bawaan', props);
         this.state = {
             id : 1,
             pokeContent : [],
             contentNumber : this.props.id
-        }
+        };
     }
 
     componentDidMount() {
-        let pokeContent = this.updatePagination(this.state.contentNumber)
+        let pokeContent = this.updatePagination(this.state.contentNumber);
         this.setState({
             pokeContent
-        })
+        });
     }
 
     componentDidUpdate(prevProps, prevState){
         
         if (this.props.id !== prevProps.id){
-            let pokeContent = this.updatePagination(this.props.id)
+            let pokeContent = this.updatePagination(this.props.id);
             this.setState({
                 contentNumber : this.props.id,
                 pokeContent : pokeContent
@@ -39,7 +39,7 @@ export default class PageLayout extends Component {
             tempContent.push(<ProfileBox key = {i} id={i}/>);
         }
         
-        return tempContent
+        return tempContent;
         
     }
 
@@ -73,7 +73,7 @@ export default class PageLayout extends Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
