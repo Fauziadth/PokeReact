@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/PokeReact/static/css/main.5ea767dc.chunk.css",
-    "main.js": "/PokeReact/static/js/main.77b5636f.chunk.js",
-    "main.js.map": "/PokeReact/static/js/main.77b5636f.chunk.js.map",
+    "main.js": "/PokeReact/static/js/main.13cc5253.chunk.js",
+    "main.js.map": "/PokeReact/static/js/main.13cc5253.chunk.js.map",
     "runtime~main.js": "/PokeReact/static/js/runtime~main.6f69b682.js",
     "runtime~main.js.map": "/PokeReact/static/js/runtime~main.6f69b682.js.map",
     "static/js/2.7fcc6ae2.chunk.js": "/PokeReact/static/js/2.7fcc6ae2.chunk.js",
     "static/js/2.7fcc6ae2.chunk.js.map": "/PokeReact/static/js/2.7fcc6ae2.chunk.js.map",
     "index.html": "/PokeReact/index.html",
-    "precache-manifest.9c4479eeba45cbc5234d9418f8548e5c.js": "/PokeReact/precache-manifest.9c4479eeba45cbc5234d9418f8548e5c.js",
+    "precache-manifest.5b418299102a14321bf14262a0950b43.js": "/PokeReact/precache-manifest.5b418299102a14321bf14262a0950b43.js",
     "service-worker.js": "/PokeReact/service-worker.js",
     "static/css/main.5ea767dc.chunk.css.map": "/PokeReact/static/css/main.5ea767dc.chunk.css.map"
   }
