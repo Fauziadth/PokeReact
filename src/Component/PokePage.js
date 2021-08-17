@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import constants from '../script/constants';
+
+const { basePokeAPI } = constants
 
 class ProfilePage extends Component {
   constructor(props){
     super(props);
     let params = props.match.params;
-    this.pokeAPI = 'https://pokeapi.co/api/v2/pokemon/' + params.id;
-    this.flavorAPI = 'https://pokeapi.co/api/v2/pokemon-species/' + params.id;
-    console.log('COBA DULU PROPS', params);
+    this.pokemonId = params.id;
     this.state = {
       poke : null,
       flavor : null
@@ -15,28 +16,20 @@ class ProfilePage extends Component {
   }
 
   componentWillMount(){
-    fetch(`${this.pokeAPI}`)
+    fetch(`${basePokeAPI}/pokemon/${this.pokemonId}`)
       .then(res => res.json())
       .then(poke => {
         console.log('hasil fetch ' ,poke);
         this.setState({poke});
       });
 
-    fetch(`${this.flavorAPI}`)
+    fetch(`${basePokeAPI}/pokemon-species/${this.pokemonId}`)
     .then(res => res.json())
     .then(flavor => {
       console.log('hasil species ' ,flavor);
       this.setState({flavor})
     });
   }
-
-  componentDidUpdate(){
-    // console.log('TERUPADTE')
-  }
-
-  // componentWillUnmount(){
-  //   console.log('Bye')
-  // }
 
   render() {
     let pokemon = this.state.poke;

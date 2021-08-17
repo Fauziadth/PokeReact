@@ -5,32 +5,15 @@ export default class PageLayout extends Component {
 
     constructor(props){
         super(props);
-        this.handleIdChange = this.handleIdChange.bind(this);
-        this.updatePagination = this.updatePagination.bind(this);
-        console.log('Bawaan', props);
         this.state = {
-            id : 1,
             pokeContent : [],
-            contentNumber : this.props.id
+            contentNumber : 1
         };
+        this.handleIdChange = this.handleIdChange.bind(this);
     }
 
     componentDidMount() {
-        let pokeContent = this.updatePagination(this.state.contentNumber);
-        this.setState({
-            pokeContent
-        });
-    }
-
-    componentDidUpdate(prevProps, prevState){
-        
-        if (this.props.id !== prevProps.id){
-            let pokeContent = this.updatePagination(this.props.id);
-            this.setState({
-                contentNumber : this.props.id,
-                pokeContent : pokeContent
-            })
-        }
+        this.updatePagination(this.state.contentNumber);
     }
 
     updatePagination = function(n) {
@@ -39,19 +22,24 @@ export default class PageLayout extends Component {
             tempContent.push(<ProfileBox key = {i} id={i}/>);
         }
         
-        return tempContent;
-        
+        this.setState({
+            pokeContent : tempContent
+        });
     }
 
     handleIdChange (event) {
         const contentNumber = parseInt(event.target.value, 10);
         this.temp = contentNumber;
         if (!isNaN(contentNumber) && contentNumber > 0) {
-            this.setState({ contentNumber });
+            this.setState({ contentNumber }, () => {this.updatePagination(this.state.contentNumber)});
         }
     }
 
     render(){
+        const {
+            contentNumber,
+            pokeContent
+        } = this.state;
 
         return (
             <div>
@@ -60,16 +48,16 @@ export default class PageLayout extends Component {
                     <select 
                         name="pageSize" 
                         className = "counterID block pagi"
-                        onChange = {this.props.change} 
+                        onChange = {this.handleIdChange} 
+                        defaultValue = {contentNumber}
                     >
                         <option value="1">1</option>
                         <option value="6">6</option>
                         <option value="15">15</option>
-                        {/* <option value="25">25</option> */}
                     </select> 
                 </header>
                 <div className= 'container'>
-                    <div className="half">{this.state.pokeContent}
+                    <div className="half">{pokeContent}
                     </div>
                 </div>
             </div>

@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import constants from '../script/constants';
+
+const {basePokeAPI} = constants
 
 class ProfileBox extends Component {
   constructor(props){
     super(props);
-    this.pokeAPI = 'https://pokeapi.co/api/v2/pokemon'
     this.state = {
       pokeID : props.id?props.id:1,
-      pokemon : undefined
+      pokemon : null
     }
-    // this.handleIdChange = this.handleIdChange.bind(this);
   }
 
   fetchPost() {
     const { pokeID } = this.state;
-    fetch(`${this.pokeAPI}/${pokeID}`)
+    fetch(`${basePokeAPI}/pokemon/${pokeID}`)
       .then(res => res.json())
       .then(pokemon => this.setState({ pokemon }));
   }
@@ -23,18 +24,9 @@ class ProfileBox extends Component {
     this.fetchPost();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.pokeID !== this.state.pokeID) {
-      this.fetchPost();
-    }
-  }
-
   capitalizeFirst = (name) => {
-    let capName = name[0].toUpperCase() + name.slice(1);
-    return capName;
+    return name[0].toUpperCase() + name.slice(1);
   }
-
- 
 
   render() {
     const { pokeID, pokemon } = this.state;
