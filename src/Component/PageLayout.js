@@ -1,44 +1,43 @@
 import React, { Component } from 'react';
 import ProfileBox from './PokeProfile';
 
+const page_size = [1, 6, 15, 50];
+
 export default class PageLayout extends Component {
 
     constructor(props){
         super(props);
         this.state = {
             pokeContent : [],
-            contentNumber : 1
+            contentNumber : 1,
+            size : 1,
+            startNo : 1,
         };
-        this.handleIdChange = this.handleIdChange.bind(this);
+        this.handleSizeChange = this.handleSizeChange.bind(this);
     }
 
     componentDidMount() {
-        this.updatePagination(this.state.contentNumber);
     }
 
-    updatePagination = function(n) {
-        let tempContent = [];
-        for (let i = 1; i<=n; i++){
-            tempContent.push(<ProfileBox key = {i} id={i}/>);
-        }
-        
+    handleSizeChange (event) {
+        const size = parseInt(event.target.value, 10);
+        this.setState({ 
+            contentNumber : size,
+            size
+         });
+    }
+
+    showMore = () => {
         this.setState({
-            pokeContent : tempContent
+            contentNumber : this.state.contentNumber + this.state.size
         });
-    }
-
-    handleIdChange (event) {
-        const contentNumber = parseInt(event.target.value, 10);
-        this.temp = contentNumber;
-        if (!isNaN(contentNumber) && contentNumber > 0) {
-            this.setState({ contentNumber }, () => {this.updatePagination(this.state.contentNumber)});
-        }
     }
 
     render(){
         const {
             contentNumber,
-            pokeContent
+            size,
+            startNo
         } = this.state;
 
         return (
@@ -48,17 +47,23 @@ export default class PageLayout extends Component {
                     <select 
                         name="pageSize" 
                         className = "counterID block pagi"
-                        onChange = {this.handleIdChange} 
-                        defaultValue = {contentNumber}
+                        onChange = {this.handleSizeChange} 
+                        value = {size}
                     >
-                        <option value="1">1</option>
-                        <option value="6">6</option>
-                        <option value="15">15</option>
+                        {page_size.map((val, i) => 
+                                <option key={i} value={val}>{val}</option>
+                         )}
                     </select> 
                 </header>
                 <div className= 'container'>
-                    <div className="half">{pokeContent}
+                    <div className="half">
+                        {Array.from(Array(contentNumber), (_, i) => 
+                            <ProfileBox key={i+startNo} id={i+startNo}/>
+                        )}
                     </div>
+                </div>
+                <div onClick={this.showMore} style={{cursor : 'pointer'}}>
+                    Show More
                 </div>
             </div>
         );
